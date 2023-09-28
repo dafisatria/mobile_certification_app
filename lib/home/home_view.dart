@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:mobile_certification_app/detailCash/detail_cash_view.dart';
 import 'package:mobile_certification_app/income/income_view.dart';
 import 'package:mobile_certification_app/outcome/outcome_view.dart';
@@ -16,16 +14,16 @@ class HomeView extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                Text(
+                const Text(
                   'Rangkuman Bulan Ini',
                 ),
-                Text(
+                const Text(
                   'Pengeluaran: Rp. 500.000,00',
                 ),
-                Text(
+                const Text(
                   'Pemasukan: Rp. 1.500.000,00',
                 ),
                 SizedBox(
@@ -42,7 +40,7 @@ class HomeView extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => IncomeView(),
+                                  builder: (context) => const IncomeView(),
                                 ));
                           },
                           child: Column(
@@ -51,11 +49,11 @@ class HomeView extends StatelessWidget {
                                 'assets/images/cash.png',
                                 height: 100,
                               ),
-                              Text('Tambah Pemasukan')
+                              const Text('Tambah Pemasukan')
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         InkWell(
@@ -63,7 +61,7 @@ class HomeView extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => DetailCashView(),
+                                  builder: (context) => const DetailCashView(),
                                 ));
                           },
                           child: Column(
@@ -72,7 +70,7 @@ class HomeView extends StatelessWidget {
                                 'assets/images/cash-flow.png',
                                 height: 100,
                               ),
-                              Text('Detail Cash Flow')
+                              const Text('Detail Cash Flow')
                             ],
                           ),
                         ),
@@ -85,7 +83,7 @@ class HomeView extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => OutcomeView(),
+                                  builder: (context) => const OutcomeView(),
                                 ));
                           },
                           child: Column(
@@ -94,11 +92,11 @@ class HomeView extends StatelessWidget {
                                 'assets/images/outcome.png',
                                 height: 100,
                               ),
-                              Text('Tambah Pengeluaran')
+                              const Text('Tambah Pengeluaran')
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         InkWell(
@@ -106,7 +104,7 @@ class HomeView extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => SettingsView(),
+                                  builder: (context) => const SettingsView(),
                                 ));
                           },
                           child: Column(
@@ -115,7 +113,7 @@ class HomeView extends StatelessWidget {
                                 'assets/images/gear.png',
                                 height: 100,
                               ),
-                              Text('Pengaturan')
+                              const Text('Pengaturan')
                             ],
                           ),
                         ),

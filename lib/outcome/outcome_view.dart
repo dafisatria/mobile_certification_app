@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:intl/intl.dart';
 
 class OutcomeView extends StatefulWidget {
@@ -20,7 +18,7 @@ class _OutcomeViewState extends State<OutcomeView> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -32,7 +30,7 @@ class _OutcomeViewState extends State<OutcomeView> {
                     color: Theme.of(context).colorScheme.onError,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextField(
@@ -63,7 +61,7 @@ class _OutcomeViewState extends State<OutcomeView> {
                             colorScheme: ColorScheme.light(
                               primary: Theme.of(context).colorScheme.onPrimary,
                             ),
-                            buttonTheme: ButtonThemeData(
+                            buttonTheme: const ButtonThemeData(
                                 textTheme: ButtonTextTheme.primary),
                           ),
                           child: child!,
@@ -81,51 +79,46 @@ class _OutcomeViewState extends State<OutcomeView> {
                     }
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                TextField(
+                const TextField(
                   decoration: InputDecoration(
                     labelText: 'Nominal: ',
                     enabledBorder: UnderlineInputBorder(),
                     focusedBorder: UnderlineInputBorder(),
                   ),
                 ),
-                TextField(
+                const TextField(
                   decoration: InputDecoration(
                     labelText: 'Keterangan: ',
                     enabledBorder: UnderlineInputBorder(),
                     focusedBorder: UnderlineInputBorder(),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text(
-                    'Reset',
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSurface),
-                  ),
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(MediaQuery.of(context).size.width, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
-                    backgroundColor: Color(0xffFFB000),
+                    backgroundColor: const Color(0xffFFB000),
+                  ),
+                  child: Text(
+                    'Reset',
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text(
-                    'Simpan',
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSurface),
-                  ),
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(MediaQuery.of(context).size.width, 50),
                     shape: RoundedRectangleBorder(
@@ -133,25 +126,30 @@ class _OutcomeViewState extends State<OutcomeView> {
                     ),
                     backgroundColor: Theme.of(context).colorScheme.onSecondary,
                   ),
+                  child: Text(
+                    'Simpan',
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface),
+                  ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text(
-                    'Kembali',
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSurface),
-                  ),
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(MediaQuery.of(context).size.width, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5),
                     ),
                     backgroundColor: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                  child: Text(
+                    'Kembali',
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface),
                   ),
                 ),
               ],

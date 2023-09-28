@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class DetailCashView extends StatelessWidget {
   const DetailCashView({super.key});
@@ -11,7 +9,7 @@ class DetailCashView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.onBackground,
         leadingWidth: 0,
-        title: Text(
+        title: const Text(
           'Detail Cash Flow',
           style: TextStyle(
             fontSize: 24,
@@ -19,14 +17,16 @@ class DetailCashView extends StatelessWidget {
             color: Colors.black,
           ),
         ),
+        leading: const SizedBox.shrink(),
+        elevation: 0,
       ),
       body: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         // height: MediaQuery.of(context).size.height,
         child: Stack(
           children: [
             Padding(
-              padding: EdgeInsets.only(bottom: 60),
+              padding: const EdgeInsets.only(bottom: 60),
               child: ListView(
                 children: [
                   Container(
@@ -36,7 +36,7 @@ class DetailCashView extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(5.0), // Sudut border
                     ),
-                    child: ListTile(
+                    child: const ListTile(
                       title: Text('[+] Rp. 250.000,00'),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +51,7 @@ class DetailCashView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Container(
@@ -62,8 +62,8 @@ class DetailCashView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5.0), // Sudut border
                     ),
                     child: ListTile(
-                      title: Text('[-] Rp. 1.000.000,00'),
-                      subtitle: Column(
+                      title: const Text('[-] Rp. 1.000.000,00'),
+                      subtitle: const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Urunan submit paper Sinta-2'),
@@ -76,7 +76,7 @@ class DetailCashView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Container(
@@ -86,7 +86,7 @@ class DetailCashView extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(5.0), // Sudut border
                     ),
-                    child: ListTile(
+                    child: const ListTile(
                       title: Text('[+] Rp. 2.000.000,00'),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +101,7 @@ class DetailCashView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Container(
@@ -111,7 +111,7 @@ class DetailCashView extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(5.0), // Sudut border
                     ),
-                    child: ListTile(
+                    child: const ListTile(
                       title: Text('[+] Rp. 1.250.000,00'),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,7 +126,7 @@ class DetailCashView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Container(
@@ -136,7 +136,7 @@ class DetailCashView extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(5.0), // Sudut border
                     ),
-                    child: ListTile(
+                    child: const ListTile(
                       title: Text('[+] Rp. 1.250.000,00'),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,7 +151,7 @@ class DetailCashView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Container(
@@ -161,7 +161,7 @@ class DetailCashView extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(5.0), // Sudut border
                     ),
-                    child: ListTile(
+                    child: const ListTile(
                       title: Text('[+] Rp. 1.250.000,00'),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,7 +176,7 @@ class DetailCashView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Container(
@@ -186,7 +186,7 @@ class DetailCashView extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(5.0), // Sudut border
                     ),
-                    child: ListTile(
+                    child: const ListTile(
                       title: Text('[+] Rp. 1.250.000,00'),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -201,7 +201,7 @@ class DetailCashView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   Container(
@@ -211,7 +211,7 @@ class DetailCashView extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(5.0), // Sudut border
                     ),
-                    child: ListTile(
+                    child: const ListTile(
                       title: Text('[+] Rp. 1.250.000,00'),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -235,17 +235,17 @@ class DetailCashView extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text(
-                  'Kembali',
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.onSurface),
-                ),
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(MediaQuery.of(context).size.width, 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
                   backgroundColor: Theme.of(context).colorScheme.onPrimary,
+                ),
+                child: Text(
+                  'Kembali',
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.onSurface),
                 ),
               ),
             ),

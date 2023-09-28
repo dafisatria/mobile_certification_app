@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:mobile_certification_app/home/home_view.dart';
 
 class LoginView extends StatelessWidget {
@@ -20,14 +18,14 @@ class LoginView extends StatelessWidget {
                     'assets/images/cost.png',
                     height: 200,
                   ),
-                  Text(
+                  const Text(
                     'My Cash Book v1.0',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   TextFormField(
@@ -41,7 +39,7 @@ class LoginView extends StatelessWidget {
                       hintText: 'Username',
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -55,7 +53,7 @@ class LoginView extends StatelessWidget {
                       hintText: 'Password',
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   ElevatedButton(
@@ -63,20 +61,20 @@ class LoginView extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => HomeView(),
+                            builder: (context) => const HomeView(),
                           ));
                     },
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurface),
-                    ),
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(MediaQuery.of(context).size.width, 50),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
                       backgroundColor: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface),
                     ),
                   ),
                 ],

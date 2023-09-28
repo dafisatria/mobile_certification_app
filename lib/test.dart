@@ -1,6 +1,5 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class LineChartSample7 extends StatelessWidget {
   LineChartSample7({
@@ -96,7 +95,7 @@ class LineChartSample7 extends StatelessWidget {
           ),
           child: LineChart(
             LineChartData(
-              lineTouchData: LineTouchData(enabled: false),
+              lineTouchData: const LineTouchData(enabled: false),
               lineBarsData: [
                 LineChartBarData(
                   spots: const [
@@ -116,7 +115,7 @@ class LineChartSample7 extends StatelessWidget {
                   isCurved: true,
                   barWidth: 2,
                   color: line1Color,
-                  dotData: FlDotData(
+                  dotData: const FlDotData(
                     show: false,
                   ),
                 ),
@@ -138,7 +137,7 @@ class LineChartSample7 extends StatelessWidget {
                   isCurved: false,
                   barWidth: 2,
                   color: line2Color,
-                  dotData: FlDotData(
+                  dotData: const FlDotData(
                     show: false,
                   ),
                 ),
@@ -170,10 +169,10 @@ class LineChartSample7 extends StatelessWidget {
                     reservedSize: 36,
                   ),
                 ),
-                topTitles: AxisTitles(
+                topTitles: const AxisTitles(
                   sideTitles: SideTitles(showTitles: false),
                 ),
-                rightTitles: AxisTitles(
+                rightTitles: const AxisTitles(
                   sideTitles: SideTitles(showTitles: false),
                 ),
               ),
@@ -192,4 +191,3 @@ class LineChartSample7 extends StatelessWidget {
     );
   }
 }
-
