@@ -1,12 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_certification_app/detailCash/detail_cash_view.dart';
-import 'package:mobile_certification_app/income/income_view.dart';
-import 'package:mobile_certification_app/outcome/outcome_view.dart';
-import 'package:mobile_certification_app/settings/setting_view.dart';
+import 'package:intl/intl.dart';
+
+import 'package:mobile_certification_app/model/database.instance.dart';
 import 'package:mobile_certification_app/test.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+import 'detail_cash_view.dart';
+import 'income_view.dart';
+import 'outcome_view.dart';
+import 'setting_view.dart';
+
+class HomeView extends StatefulWidget {
+  String password;
+  HomeView({
+    Key? key,
+    required this.password,
+  }) : super(key: key);
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  DatabaseInstance? databaseInstance;
+  void initDatabase() async {
+    await databaseInstance!.database();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    databaseInstance = DatabaseInstance();
+    initDatabase();
+    super.initState();
+  }
+
+  void income() {}
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +44,59 @@ class HomeView extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text(
                   'Rangkuman Bulan Ini',
+                  style: TextStyle(fontSize: 20),
                 ),
-                const Text(
-                  'Pengeluaran: Rp. 500.000,00',
-                ),
-                const Text(
-                  'Pemasukan: Rp. 1.500.000,00',
-                ),
+                databaseInstance != null
+                    ? FutureBuilder(
+                        future: databaseInstance!.getTotalOutcome(),
+                        builder: (context, snapshot) {
+                          print(snapshot.error);
+                          if (snapshot.hasData) {
+                            if (snapshot.data == null) {
+                              return Text('0');
+                            }
+                            return Text(
+                              'Pengeluaran: ${NumberFormat.currency(
+                                locale: 'id_ID',
+                                symbol: 'Rp. ',
+                              ).format(int.parse(snapshot.data))}',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Theme.of(context).colorScheme.onError,
+                                  fontWeight: FontWeight.w600),
+                            );
+                          } else {
+                            return Text('0');
+                          }
+                        })
+                    : Text('0'),
+                databaseInstance != null
+                    ? FutureBuilder(
+                        future: databaseInstance!.getTotalIncome(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            if (snapshot.data == null) {
+                              return const Text('0');
+                            }
+                            return Text(
+                              'Pemasukan: Rp. ${NumberFormat.currency(
+                                locale: 'id_ID',
+                                symbol: 'Rp. ',
+                              ).format(int.parse(snapshot.data))}',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0xff59CE8F),
+                                  fontWeight: FontWeight.w600),
+                            );
+                          } else {
+                            return Text('0');
+                          }
+                        })
+                    : Text('0'),
                 SizedBox(
                   height: 250,
                   child: LineChartSample7(),
@@ -41,7 +112,9 @@ class HomeView extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => const IncomeView(),
-                                ));
+                                )).then((value) {
+                              setState(() {});
+                            });
                           },
                           child: Column(
                             children: [
@@ -61,7 +134,7 @@ class HomeView extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const DetailCashView(),
+                                  builder: (builder) => const DetailCashView(),
                                 ));
                           },
                           child: Column(
@@ -84,7 +157,9 @@ class HomeView extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => const OutcomeView(),
-                                ));
+                                )).then((value) {
+                              setState(() {});
+                            });
                           },
                           child: Column(
                             children: [
@@ -104,7 +179,9 @@ class HomeView extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const SettingsView(),
+                                  builder: (context) => SettingsView(
+                                    password: widget.password,
+                                  ),
                                 ));
                           },
                           child: Column(

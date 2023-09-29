@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../model/database.instance.dart';
+
 class OutcomeView extends StatefulWidget {
   const OutcomeView({super.key});
 
@@ -12,6 +14,21 @@ class _OutcomeViewState extends State<OutcomeView> {
   final DateTime _dueDate = DateTime.now();
   final currentDate = DateTime.now();
   final inputControllerDate = TextEditingController();
+  final inputControllerNominal = TextEditingController();
+  final inputControllerDesc = TextEditingController();
+  DatabaseInstance? databaseInstance;
+  Future initDatabase() async {
+    await databaseInstance!.database();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    databaseInstance = DatabaseInstance();
+    initDatabase();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,14 +99,16 @@ class _OutcomeViewState extends State<OutcomeView> {
                 const SizedBox(
                   height: 10,
                 ),
-                const TextField(
+                TextField(
+                  controller: inputControllerNominal,
                   decoration: InputDecoration(
                     labelText: 'Nominal: ',
                     enabledBorder: UnderlineInputBorder(),
                     focusedBorder: UnderlineInputBorder(),
                   ),
                 ),
-                const TextField(
+                TextField(
+                  controller: inputControllerDesc,
                   decoration: InputDecoration(
                     labelText: 'Keterangan: ',
                     enabledBorder: UnderlineInputBorder(),
@@ -100,7 +119,12 @@ class _OutcomeViewState extends State<OutcomeView> {
                   height: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    inputControllerDate.text =
+                        DateFormat('dd-MM-yyyy').format(DateTime(2023, 1, 1));
+                    inputControllerNominal.clear();
+                    inputControllerDesc.clear();
+                  },
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(MediaQuery.of(context).size.width, 50),
                     shape: RoundedRectangleBorder(
@@ -118,7 +142,14 @@ class _OutcomeViewState extends State<OutcomeView> {
                   height: 10,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await databaseInstance!.insertOut({
+                      'date': inputControllerDate.text,
+                      'nominal': inputControllerNominal.text,
+                      'desc': inputControllerDesc.text
+                    });
+                    Navigator.pop(context);
+                  },
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(MediaQuery.of(context).size.width, 50),
                     shape: RoundedRectangleBorder(

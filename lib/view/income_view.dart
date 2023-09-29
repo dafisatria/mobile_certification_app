@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mobile_certification_app/model/database.instance.dart';
+import 'package:mobile_certification_app/view/detail_cash_view.dart';
 
 class IncomeView extends StatefulWidget {
   const IncomeView({super.key});
@@ -12,6 +14,21 @@ class _IncomeViewState extends State<IncomeView> {
   final DateTime _dueDate = DateTime.now();
   final currentDate = DateTime.now();
   final inputControllerDate = TextEditingController();
+  final inputControllerNominal = TextEditingController();
+  final inputControllerDesc = TextEditingController();
+  DatabaseInstance? databaseInstance;
+  Future initDatabase() async {
+    await databaseInstance!.database();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    databaseInstance = DatabaseInstance();
+    initDatabase();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,15 +98,17 @@ class _IncomeViewState extends State<IncomeView> {
                 const SizedBox(
                   height: 10,
                 ),
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  controller: inputControllerNominal,
+                  decoration: const InputDecoration(
                     labelText: 'Nominal: ',
                     enabledBorder: UnderlineInputBorder(),
                     focusedBorder: UnderlineInputBorder(),
                   ),
                 ),
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  controller: inputControllerDesc,
+                  decoration: const InputDecoration(
                     labelText: 'Keterangan: ',
                     enabledBorder: UnderlineInputBorder(),
                     focusedBorder: UnderlineInputBorder(),
@@ -99,7 +118,12 @@ class _IncomeViewState extends State<IncomeView> {
                   height: 20,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    inputControllerDate.text =
+                        DateFormat('dd-MM-yyyy').format(DateTime(2023, 1, 1));
+                    inputControllerNominal.clear();
+                    inputControllerDesc.clear();
+                  },
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(MediaQuery.of(context).size.width, 50),
                     shape: RoundedRectangleBorder(
@@ -117,7 +141,14 @@ class _IncomeViewState extends State<IncomeView> {
                   height: 10,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await databaseInstance!.insert({
+                      'date': inputControllerDate.text,
+                      'nominal': inputControllerNominal.text,
+                      'desc': inputControllerDesc.text
+                    });
+                    Navigator.pop(context);
+                  },
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(MediaQuery.of(context).size.width, 50),
                     shape: RoundedRectangleBorder(

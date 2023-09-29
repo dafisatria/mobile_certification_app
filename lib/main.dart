@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_certification_app/login/login_view.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'view/login_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const LoginView(),
+      home: LoginView(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),

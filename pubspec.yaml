@@ -39,8 +39,8 @@ dependencies:
   google_fonts:
   fl_chart: 
   intl: ^0.18.1 
-  sqflite: ^2.3.0
-
+  sqflite: 
+  path_provider: 
 dev_dependencies:
   flutter_test:
     sdk: flutter
